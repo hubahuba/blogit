@@ -18,10 +18,18 @@ class Categories extends Eloquent {
         'name', 'slug', 'description', 'creator'
     ];
 
+    /**
+     * Relation from PostCategory model
+     * @return object
+     */
     public function ofPost(){
         return $this->hasMany('PostCategory', 'tag_id');
     }
 
+    /**
+     * Relation to User model
+     * @return object
+     */
     public function creators(){
         return $this->belongsTo('User', 'creator');
     }

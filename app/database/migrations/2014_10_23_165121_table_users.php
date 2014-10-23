@@ -20,7 +20,7 @@ class TableUsers extends Migration {
             $table->string('firstname', 60);
             $table->string('lastname', 60);
             $table->string('nickname', 60);
-            $table->integer('level');
+            $table->integer('level'); // level of roles 1 : administrator, 2 : editor, 3 : subscriber
             $table->integer('creator')->unsigned()->nullable();
             $table->foreign('creator')
                 ->references('id')->on('bi_users');

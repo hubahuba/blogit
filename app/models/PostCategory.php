@@ -18,10 +18,18 @@ class PostCategory extends Eloquent {
         'post_id', 'category_id'
     ];
 
+    /**
+     * Relation to Categories model
+     * @return object
+     */
     public function category(){
         return $this->belongsTo('Categories', 'category_id');
     }
 
+    /**
+     * Relation to Posts model
+     * @return object
+     */
     public function post(){
         return $this->belongsTo('Posts', 'post_id');
     }

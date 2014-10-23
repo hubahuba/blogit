@@ -18,10 +18,18 @@ class PostTag extends Eloquent {
         'post_id', 'tag_id'
     ];
 
+    /**
+     * Relation to Tags model
+     * @return eloquent object
+     */
     public function tag(){
         return $this->belongsTo('Tags', 'tag_id');
     }
 
+    /**
+     * Relation to Posts model
+     * @return object
+     */
     public function post(){
         return $this->belongsTo('Posts', 'post_id');
     }

@@ -18,7 +18,7 @@ class TablePosts extends Migration {
 			$table->string('title', 254)->unique();
 			$table->string('slug', 254)->unique();
 			$table->text('post');
-            $table->string('lang', 3);
+            $table->string('lang', 3); //preparing for multi language site, read base on app/lang folder
             $table->integer('feature_image')->unsigned();
             $table->foreign('feature_image')
                 ->references('id')->on('bi_media');
