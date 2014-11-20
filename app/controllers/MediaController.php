@@ -34,4 +34,14 @@ class MediaController extends BaseController {
         exit;
     }
 
+    public function libraries(){
+        $title = 'Media Libraries';
+        $this->layout->title = $title . ' - NCCMS';
+        $this->layout->with('script', 'admin.media.scripts.libraries')
+            ->with('style', 'admin.media.styles.libraries');
+        $this->layout->content = View::make('admin.media.libraries')
+            ->with('libraries', Media::getAll())
+            ->with('title', $title);
+    }
+
 }

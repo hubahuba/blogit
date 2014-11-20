@@ -120,10 +120,10 @@
                         <label class="control-label">Thumbnail Size</label>
                         <div class="row">
                             <div class="col-md-3">
-                                <input type="text" name="mediaThumbW" class="form-control" value="{{{ ($media['mediaThumbWidth']) ? $media['mediaThumbWidth']:Input::old('mediaThumbW') }}}" placeholder="Width">
+                                <input type="text" name="mediaThumbW" class="form-control" value="{{{ isset($media['mediaThumbWidth']) ? $media['mediaThumbWidth']:Input::old('mediaThumbW') }}}" placeholder="Width">
                             </div>
                             <div class="col-md-3">
-                                <input type="text" name="mediaThumbH" class="form-control" value="{{{ ($media['mediaThumbHeight']) ? $media['mediaThumbHeight']:Input::old('mediaThumbH') }}}" placeholder="Height">
+                                <input type="text" name="mediaThumbH" class="form-control" value="{{{ isset($media['mediaThumbHeight']) ? $media['mediaThumbHeight']:Input::old('mediaThumbH') }}}" placeholder="Height">
                             </div>
                         </div>
                         {{ $errors->first('mediaThumbW') ? '<code>'.$errors->first('mediaThumbW').'</code>':'' }}
@@ -133,10 +133,10 @@
                         <label class="control-label">Max Medium Size</label>
                         <div class="row">
                             <div class="col-md-3">
-                                <input type="text" name="mediumW" class="form-control" value="{{{ ($media['mediaMediumWidth']) ? $media['mediaMediumWidth']:Input::old('mediumW') }}}" placeholder="Width">
+                                <input type="text" name="mediumW" class="form-control" value="{{{ isset($media['mediaMediumWidth']) ? $media['mediaMediumWidth']:Input::old('mediumW') }}}" placeholder="Width">
                             </div>
                             <div class="col-md-3">
-                                <input type="text" name="mediumH" class="form-control" value="{{{ ($media['mediaMediumHeight']) ? $media['mediaMediumHeight']:Input::old('mediumH') }}}" placeholder="Height">
+                                <input type="text" name="mediumH" class="form-control" value="{{{ isset($media['mediaMediumHeight']) ? $media['mediaMediumHeight']:Input::old('mediumH') }}}" placeholder="Height">
                             </div>
                         </div>
                         {{ $errors->first('mediumW') ? '<code>'.$errors->first('mediumW').'</code>':'' }}
@@ -146,10 +146,10 @@
                         <label class="control-label">Max Large Size</label>
                         <div class="row">
                             <div class="col-md-3">
-                                <input type="text" name="largeW" class="form-control" value="{{{ ($media['mediaLargeWidth']) ? $media['mediaLargeWidth']:Input::old('largeW') }}}" placeholder="Width">
+                                <input type="text" name="largeW" class="form-control" value="{{{ isset($media['mediaLargeWidth']) ? $media['mediaLargeWidth']:Input::old('largeW') }}}" placeholder="Width">
                             </div>
                             <div class="col-md-3">
-                                <input type="text" name="largeH" class="form-control" value="{{{ ($media['mediaLargeHeight']) ? $media['mediaLargeHeight']:Input::old('largeH') }}}" placeholder="Height">
+                                <input type="text" name="largeH" class="form-control" value="{{{ isset($media['mediaLargeHeight']) ? $media['mediaLargeHeight']:Input::old('largeH') }}}" placeholder="Height">
                             </div>
                         </div>
                         {{ $errors->first('largeW') ? '<code>'.$errors->first('largeW').'</code>':'' }}

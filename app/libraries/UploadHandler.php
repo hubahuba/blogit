@@ -44,7 +44,7 @@ class UploadHandler
         $this->options = array(
             'script_url' => $this->get_full_url().'/',
             'upload_dir' => public_path().'/uploads/',
-            'upload_url' => 'public/uploads/',
+            'upload_url' => Config::get('app.url').'/uploads/',
             'user_dirs' => false,
             'mkdir_mode' => 0755,
             'param_name' => 'media',
@@ -1029,11 +1029,23 @@ class UploadHandler
         $this->destroy_image_object($file_path);
     }
 
+    protected function generateFilename($length=7){
+        $hex = md5("02dHs3OQL=v7AEu" . uniqid("", true));
+        $pack = pack('H*', $hex);
+        $tmp =  base64_encode($pack);
+        $uid = preg_replace("#(*UTF8)[^A-Za-z0-9]#", "", $tmp);
+        $len = max(4, min(128, $length));
+        while (strlen($uid) < $length){
+            $uid .= $this->generateFilename($length);
+        };
+        return substr($uid, 0, $length);
+    }
+
     protected function handle_file_upload($uploaded_file, $name, $size, $type, $error,
             $index = null, $content_range = null) {
+        $ext = pathinfo($name, PATHINFO_EXTENSION);
         $file = new \stdClass();
-        $file->name = $this->get_file_name($uploaded_file, $name, $size, $type, $error,
-            $index, $content_range);
+        $file->name = $this->generateFilename(9) . '.' . $ext;
         $file->size = $this->fix_integer_overflow(intval($size));
         $file->type = $type;
         if ($this->validate($uploaded_file, $file, $error, $index)) {
@@ -1314,9 +1326,11 @@ class UploadHandler
          */
         foreach($files as $file) {
             Media::create([
-                'thumbnail' => $file->thumbnailUrl,
-                'medium' => $file->mediumUrl,
+                'thumbnail' => isset($file->thumbnailUrl) ? $file->thumbnailUrl:null,
+                'medium' => isset($file->mediumUrl) ? $file->mediumUrl:null,
                 'large' => $file->url,
+                'realname' => $file->name,
+                'type' => $file->type,
                 'description' => null,
                 'creator' => null
             ]);

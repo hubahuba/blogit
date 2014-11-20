@@ -8,6 +8,9 @@
     $(function() {
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
-        CKEDITOR.replace('editor');
+        CKEDITOR.replace('editor', {
+            filebrowserBrowseUrl: '{{ URL::to('media/ckeditor/libraries') }}',
+            filebrowserImageBrowseUrl : '{{ URL::to('media/ckeditor/image') }}',
+        });
     });
 </script>

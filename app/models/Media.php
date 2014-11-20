@@ -15,7 +15,7 @@ class Media extends Eloquent {
      * @var array
      */
     protected $fillable = [
-        'thumbnail', 'medium', 'large', 'description', 'creator'
+        'thumbnail', 'medium', 'large', 'description', 'realname', 'type', 'creator'
     ];
 
     /**
@@ -32,6 +32,30 @@ class Media extends Eloquent {
      */
     public function feature(){
         return $this->hasMany('Posts', 'feature_image');
+    }
+
+    /**
+     * Get all media files list
+     * @return object
+     */
+    public static function getAll(){
+        return static::orderBy('created_at', 'desc')->get();
+    }
+
+    /**
+     * Get image media files list
+     * @return object
+     */
+    public static function getImage(){
+        return static::where('type', 'LIKE', '%image%')->orderBy('created_at', 'desc')->get();
+    }
+
+    /**
+     * Get multimedia files list
+     * @return object
+     */
+    public static function getMultimedia(){
+        return static::where('type', 'LIKE', '%audio%')->orWhere('type', 'LIKE', '%video%')->orderBy('created_at', 'desc')->get();
     }
 
 }

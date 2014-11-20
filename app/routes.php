@@ -39,6 +39,10 @@ Route::group(array('domain' => 'admin.blog.it'), function()
      */
     Route::group(array('prefix' => 'media'), function() {
         /**
+         * Libraries Page
+         */
+        Route::get('libraries', ['uses' => 'MediaController@libraries']);
+        /**
          * Upload Page
          */
         Route::get('upload', ['uses' => 'MediaController@upload']);
@@ -46,6 +50,28 @@ Route::group(array('domain' => 'admin.blog.it'), function()
          * Upload Media action Handler
          */
         Route::post('upload', ['uses' => 'MediaController@doUpload']);
+
+        /**
+         * CKEDITOR Prefix URL
+         */
+        Route::group(array('prefix' => 'ckeditor'), function() {
+            /**
+             * File Libraries Page
+             */
+            Route::get('libraries', ['uses' => 'CkeditorController@libraries']);
+            /**
+             * Image Libraries Page
+             */
+            Route::get('image', ['uses' => 'CkeditorController@image']);
+            /**
+             * Upload Page
+             */
+            Route::get('upload', ['uses' => 'CkeditorController@upload']);
+            /**
+             * Upload Media action Handler
+             */
+            Route::post('upload', ['uses' => 'CkeditorController@doUpload']);
+        });
     });
 
     /**
