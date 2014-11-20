@@ -18,7 +18,6 @@ class TableMedia extends Migration {
             $table->string('thumbnail', 128)->nullable()->unique();
             $table->string('medium', 128)->nullable()->unique();
             $table->string('large', 128)->nullable()->unique();
-            $table->string('realname', 128);
             $table->text('description')->nullable();
             $table->integer('creator')->unsigned();
             $table->foreign('creator')
