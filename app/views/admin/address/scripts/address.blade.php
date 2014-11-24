@@ -5,10 +5,10 @@
 {{ HTML::script(asset('js/plugins/datatables/dataTables.bootstrap.js')) }}
 {{ HTML::script(asset('js/AdminLTE/app.js')) }}
 <script type="text/javascript">
-    var btnCancel = '<button type="button" class="btn btn-danger" id="cancelIt" onclick="javascript:resetForm(\'cForm\')">Cancel</button>'
+    var btnCancel = '<button type="button" class="btn btn-danger" id="cancelIt" onclick="javascript:resetForm(\'aForm\')">Cancel</button>'
     function resetForm(form) {
         $form = $('#'+form);
-        $form.find('input:text, input:password, input:hidden, textarea').val('');
+        $form.find('input:text, input:password, input:hidden, textarea, select').val('');
          $('#cancelIt').remove();
     }
 
@@ -21,15 +21,25 @@
             "bAutoWidth": true
         });
 
-        $('.cEditor').click(function(){
+        $('.aEditor').click(function(){
             var id = $(this).attr('data-id');
-            var name = $(this).attr('data-name');
-            var desc = $(this).attr('data-desc');
-            var icon = $(this).attr('data-icon');
-            $('input[name="cName"]').val(name);
-            $('textarea[name="cDescription"]').val(desc);
-            $('input[name="cIcon"]').val(icon);
-            $('input[name="cID"]').val(id);
+            var label = $(this).attr('data-label');
+            var company = $(this).attr('data-company');
+            var phone = $(this).attr('data-phone');
+            var fax = $(this).attr('data-fax');
+            var email = $(this).attr('data-email');
+            var address = $(this).attr('data-address');
+            var url = $(this).attr('data-url');
+            var status = $(this).attr('data-status');
+            $('input[name="aLabel"]').val(label);
+            $('input[name="aCompany"]').val(company);
+            $('input[name="aPhone"]').val(phone);
+            $('input[name="aFax"]').val(fax);
+            $('input[name="aEmail"]').val(email);
+            $('textarea[name="aAddress"]').val(address);
+            $('textarea[name="aURL"]').val(url);
+            $('select[name="aStatus"]').val(status);
+            $('input[name="aID"]').val(id);
             if($('#cancelIt').length < 1){
                 $('.box-footer').append(btnCancel);
             }

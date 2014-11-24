@@ -15,7 +15,7 @@ class Address extends Eloquent {
      * @var array
      */
     protected $fillable = [
-        'label', 'company', 'phone', 'fax', 'email', 'address', 'map_url'
+        'label', 'company', 'phone', 'fax', 'email', 'address', 'map_url', 'creator', 'status'
     ];
 
     /**

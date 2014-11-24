@@ -21,6 +21,7 @@ class AddressController extends BaseController {
         $this->layout->with('script', 'admin.address.scripts.address')
             ->with('style', 'admin.address.styles.address');
         $this->layout->content = View::make('admin.address.address')
+            ->with('addresses', Address::all())
             ->with('title', 'Address');
 	}
 
@@ -39,12 +40,22 @@ class AddressController extends BaseController {
             'aCompany' => 'required|max:128',
             'aStatus' => 'required|max:3',
             'aAddress' => 'required',
+            'aPhone' => 'max:25',
+            'aFax' => 'max:25',
+            'aEmail' => 'max:128',
+            'aStatus' => 'max:3',
+            'aURL' => 'url',
         );
         $display = array(
             'aLabel' => 'Label Name',
             'aCompany' => 'Company Name',
             'aAddress' => 'Office Address',
             'aStatus' => 'Status',
+            'aPhone' => 'Contact Phone',
+            'aFax' => 'Contact Fax',
+            'aEmail' => 'Contact Email',
+            'aStatus' => 'Status',
+            'aURL' => 'Map Static URL',
         );
 
         $validator = Validator::make(Input::all(), $rules, array(), $display);
@@ -65,7 +76,7 @@ class AddressController extends BaseController {
                 $address->status = Input::get('aStatus');
                 $address->save();
             }else{
-                Categories::create([
+                Address::create([
                     'label' => Input::get('aLabel'),
                     'company' => Input::get('aCompany'),
                     'phone' => (Input::has('aPhone')) ? Input::get('aPhone'):null,
@@ -74,7 +85,7 @@ class AddressController extends BaseController {
                     'address' => Input::get('aAddress'),
                     'map_url' => (Input::has('aURL')) ? Input::get('aURL'):null,
                     'status' => Input::get('aStatus'),
-                    'creator' => (Session::has('logedin')) ? Session::get('logedin'):null
+                    'creator' => Session::get('logedin')
                 ]);
             }
             return Redirect::to('address');
