@@ -28,11 +28,4 @@ class Common{
         return substr($data, 0, -$padding);
     }
     
-    public static function genUsrID($ip){
-        $browser = Useragent::browser();
-        $os = Useragent::platform();
-        $device = (Useragent::is_mobile()) ? Useragent::mobile():null;
-        return md5(uniqid($ip.$browser.$os.$device.date('Y-m-dHis'), true));
-    }
-    
 }

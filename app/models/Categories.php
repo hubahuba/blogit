@@ -15,7 +15,7 @@ class Categories extends Eloquent {
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'description', 'creator'
+        'name', 'slug', 'icon', 'description', 'creator'
     ];
 
     /**

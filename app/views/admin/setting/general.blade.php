@@ -142,19 +142,6 @@
                         {{ $errors->first('mediumW') ? '<code>'.$errors->first('mediumW').'</code>':'' }}
                         {{ $errors->first('mediumH') ? '<code>'.$errors->first('mediumH').'</code>':'' }}
                     </div>
-                    <div class="form-group{{{ $errors->first('mediumW') || $errors->first('mediumH') ? ' has-error':'' }}}">
-                        <label class="control-label">Max Large Size</label>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <input type="text" name="largeW" class="form-control" value="{{{ isset($media['mediaLargeWidth']) ? $media['mediaLargeWidth']:Input::old('largeW') }}}" placeholder="Width">
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" name="largeH" class="form-control" value="{{{ isset($media['mediaLargeHeight']) ? $media['mediaLargeHeight']:Input::old('largeH') }}}" placeholder="Height">
-                            </div>
-                        </div>
-                        {{ $errors->first('largeW') ? '<code>'.$errors->first('largeW').'</code>':'' }}
-                        {{ $errors->first('largeH') ? '<code>'.$errors->first('largeH').'</code>':'' }}
-                    </div>
                 </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Save Changes</button>

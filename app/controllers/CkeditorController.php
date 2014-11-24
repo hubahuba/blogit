@@ -45,6 +45,7 @@ class CkeditorController extends BaseController {
     }
 
     public function image(){
+        if(Input::has('CKEditorFuncNum')) Session::put('FuncNum', Input::get('CKEditorFuncNum'));
         $title = 'Image Media Libraries';
         $this->layout->title = $title . ' - NCCMS';
         $this->layout->with('script', 'admin.ckeditor.scripts.libraries')

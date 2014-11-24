@@ -4,8 +4,9 @@
         <meta charset="UTF-8">
         <title>{{{ $title }}}</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        @if(isset($script))
-            @include($script)
+
+        @if(isset($style))
+            @include($style)
         @else
             @include('admin.styles.global')
         @endif
@@ -43,7 +44,7 @@
                 <section class="sidebar">
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
-                        <li><a href="{{ URL::to('media/ckeditor/libraries') }}"><i class="fa fa-picture-o"></i> Libraries</a></li>
+                        <li><a href="{{ URL::to('media/ckeditor/image') }}"><i class="fa fa-picture-o"></i> Libraries</a></li>
                         <li><a href="{{ URL::to('media/ckeditor/upload') }}"><i class="fa fa-upload"></i> Upload</a></li>
                     </ul>
                 </section>
@@ -59,11 +60,10 @@
 
         </div>
 
-        @if(isset($style))
-            @include($style)
+        @if(isset($script))
+            @include($script)
         @else
             @include('admin.scripts.global')
         @endif
-
     </body>
 </html>

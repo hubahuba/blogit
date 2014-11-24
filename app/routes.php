@@ -32,6 +32,14 @@ Route::group(array('domain' => 'admin.blog.it'), function()
          * New Post Action Handler
          */
         Route::post('new', ['before' => 'csrf', 'uses' => 'PostController@doAction']);
+        /**
+         * Category Page Handler
+         */
+        Route::get('categories', ['uses' => 'CategoryController@index']);
+        /**
+         * New/Edit Category Post Action Handler
+         */
+        Route::post('categories', ['before' => 'csrf', 'uses' => 'CategoryController@doCategories']);
     });
 
     /**

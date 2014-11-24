@@ -4,8 +4,9 @@
         <meta charset="UTF-8">
         <title>{{{ $title }}}</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        @if(isset($script))
-            @include($script)
+
+        @if(isset($style))
+            @include($style)
         @else
             @include('admin.styles.global')
         @endif
@@ -225,8 +226,8 @@
 
         </div>
 
-        @if(isset($style))
-            @include($style)
+        @if(isset($script))
+            @include($script)
         @else
             @include('admin.scripts.global')
         @endif

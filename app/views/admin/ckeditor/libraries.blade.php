@@ -11,7 +11,7 @@
 <section class="content">
     <!-- Small boxes (Stat box) -->
     <div class="row">
-        @if(!empty($libraries))
+        @if(isset($libraries[0]))
             @foreach($libraries as $media)
         <div class="col-md-4 col-xs-6">
             <div class="small-box bg-blue dropdown notifications-menu" style="min-height: 116px;">
@@ -47,6 +47,7 @@
             @endforeach
         @else
         <div class="col-lg-12 col-xs-12">
+            <p>No Media Found.</p>
         </div><!-- ./col -->
         @endif
     </div><!-- /.row -->

@@ -5,7 +5,7 @@
 {{ HTML::script(asset('js/AdminLTE/app.js')) }}
 <script>
     function setImage(url){
-        window.opener.CKEDITOR.tools.callFunction(<?= Input::get('CKEditorFuncNum')?>,url);
+        window.opener.CKEDITOR.tools.callFunction(<?= Session::get('FuncNum')?>,url);
         window.close();
     }
 </script>

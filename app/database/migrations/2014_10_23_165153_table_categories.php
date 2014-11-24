@@ -17,7 +17,8 @@ class TableCategories extends Migration {
 			$table->increments('id');
 			$table->string('name', 128)->unique();
 			$table->string('slug', 128)->unique();
-			$table->text('description');
+			$table->string('icon', 128)->nullable();
+			$table->text('description')->nullable();
             $table->integer('creator')->unsigned();
             $table->foreign('creator')
                 ->references('id')->on('bi_users');

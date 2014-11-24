@@ -142,16 +142,12 @@ class SettingController extends BaseController {
             'mediaThumbH' => 'required|min:1',
             'mediumW' => 'required|min:1',
             'mediumH' => 'required|min:1',
-            'largeW' => 'required|min:1',
-            'largeH' => 'required|min:1',
         );
         $display = array(
             'mediaThumbW' => 'Thumbnail Width',
             'mediaThumbH' => 'Thumbnail Height',
             'mediumW' => 'Max Medium Size Image Width',
             'mediumH' => 'Max Medium Size Image Height',
-            'largeW' => 'Max Large Size Image Width',
-            'largeH' => 'Max Large Size Image Height',
         );
 
         $validator = Validator::make(Input::all(), $rules, array(), $display);
@@ -198,26 +194,6 @@ class SettingController extends BaseController {
             }else{
                 $mediumH->value = Input::get('mediumH');
                 $mediumH->save();
-            }
-
-            if(!$largeW = Settings::where('name', '=', 'mediaLargeWidth')->first()) {
-                Settings::create([
-                    'name' => 'mediaLargeWidth',
-                    'value' => Input::get('largeW')
-                ]);
-            }else{
-                $largeW->value = Input::get('largeW');
-                $largeW->save();
-            }
-
-            if(!$largeH = Settings::where('name', '=', 'mediaLargeHeight')->first()) {
-                Settings::create([
-                    'name' => 'mediaLargeHeight',
-                    'value' => Input::get('largeH')
-                ]);
-            }else{
-                $largeH->value = Input::get('largeH');
-                $largeH->save();
             }
             return Redirect::to('setting');
         }
