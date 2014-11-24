@@ -4,7 +4,7 @@
  * Start Router for admin
  *
  */
-Route::group(array('domain' => 'admin.blog.it'), function()
+Route::group(array('domain' => 'admin.blog.it', 'before' => 'isAdmin'), function()
 {
     /**
      * Route For Dashboard
@@ -19,6 +19,11 @@ Route::group(array('domain' => 'admin.blog.it'), function()
      * Login action Handler
      */
     Route::post('login', ['before' => 'csrf','uses' => 'AdminController@doLogin']);
+
+    /**
+     * Route For Logout
+     */
+    Route::get('logout', ['uses' => 'AdminController@logout']);
 
     /**
      * Route For Post
@@ -108,6 +113,20 @@ Route::group(array('domain' => 'admin.blog.it'), function()
          * ajax for date/time format
          */
         Route::post('dater', ['uses' => 'SettingController@formater']);
+    });
+
+    /**
+     * Route For Address
+     */
+    Route::group(array('prefix' => 'address'), function() {
+        /**
+         * Address Show Page
+         */
+        Route::get('/', ['uses' => 'AddressController@index']);
+        /**
+         * Address Action Handler
+         */
+        Route::post('/', ['uses' => 'AddressController@doAddress']);
     });
 
 });

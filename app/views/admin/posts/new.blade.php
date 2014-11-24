@@ -71,8 +71,9 @@
                     <div class="form-group">
                         <label>Select Category</label>
                         <select name="status" class="form-control" multiple>
-                            <option value="dr">Draft</option>
-                            <option value="pub">Publish</option>
+                            @foreach($categories as $category)
+                            <option value="{{{ $category['id'] }}}">{{{ $category['name'] }}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

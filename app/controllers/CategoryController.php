@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Class PostController
- * Contain Post & Page Handler
+ * Class CategoryController
+ * Contain Categories Handler
  */
 class CategoryController extends BaseController {
     /**

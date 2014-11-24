@@ -33,6 +33,14 @@ App::after(function($request, $response)
 |
 */
 
+Route::filter('isAdmin', function($route, $request)
+{
+    if (!Session::has('logedin'))
+    {
+        if($request->segment(1) != 'login') return Redirect::to('login');
+    }
+});
+
 Route::filter('csrf', function()
 {
 	if (Session::token() != Input::get('_token'))

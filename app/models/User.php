@@ -34,6 +34,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     ];
 
     /**
+     * Get User firstname
+     * @return string
+     */
+    public static function firstname($id){
+        $user = static::where('id', '=', $id)->select('firstname')->first();
+        return $user['firstname'];
+    }
+
+    /**
+     * Get User lastname
+     * @return string
+     */
+    public static function lastname($id){
+        $user = static::where('id', '=', $id)->select('lastname')->first();
+        return $user['lastname'];
+    }
+
+    /**
      * Relation from Categories model
      * @return object
      */
@@ -45,8 +63,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      * Relation from Tags model
      * @return object
      */
-    public function tags(){
-        return $this->hasMany('Tags', 'creator');
+    public function media(){
+        return $this->hasMany('Media', 'creator');
     }
 
     /**
@@ -79,6 +97,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      */
     public function menus(){
         return $this->hasMany('Menus', 'creator');
+    }
+
+    /**
+     * Relation from Address model
+     * @return mixed
+     */
+    public function addr(){
+        return $this->hasMany('Address', 'creator');
     }
 
 }

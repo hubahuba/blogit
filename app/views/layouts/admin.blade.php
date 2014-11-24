@@ -116,15 +116,14 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>Jane Doe <i class="caret"></i></span>
+                                <span>{{{ Session::get('nickname') }}} <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                                    <img src="{{ asset('img/avatar.png') }}" class="img-circle" alt="User Image" />
                                     <p>
-                                        Jane Doe - Web Developer
-                                        <small>Member since Nov. 2012</small>
+                                        {{{ User::firstname(Session::get('logedin')) }}} {{{ User::lastname(Session::get('logedin')) }}}
                                     </p>
                                 </li>
                                 <!-- Menu Footer-->
@@ -204,6 +203,12 @@
                             <a href="{{{ URL::to('mailbox') }}}">
                                 <i class="fa fa-envelope"></i> <span>Mailbox</span>
                                 <small class="badge pull-right bg-yellow">12</small>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ URL::to('address') }}">
+                                <i class="fa fa-map-marker"></i>
+                                <span>Address</span>
                             </a>
                         </li>
                         <li>

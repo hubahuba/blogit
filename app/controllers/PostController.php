@@ -26,6 +26,7 @@ class PostController extends BaseController {
         $this->layout->with('script', 'admin.posts.scripts.new')
             ->with('style', 'admin.posts.styles.new');
         $this->layout->content = View::make('admin.posts.new')
+            ->with('categories', Categories::orderBy('updated_at', 'desc')->get())
             ->with('title', $title);
 	}
 

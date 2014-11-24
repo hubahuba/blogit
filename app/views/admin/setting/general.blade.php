@@ -5,6 +5,7 @@
 <section class="content-header">
     <h1>
         {{{ $title }}}
+        <small><i class="fa fa-cogs"></i></small>
     </h1>
 </section>
 <!-- Main content -->

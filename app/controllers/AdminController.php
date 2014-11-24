@@ -57,7 +57,7 @@ class AdminController extends BaseController {
                 ->first();
             if(isset($user->id)){
                 if($user->level < 3) {
-                    if (Hash::check($user->password, Input::get('password'))) {
+                    if (Hash::check(Input::get('password'), $user->password)) {
                         Session::put('logedin', $user->id);
                         Session::put('loginLevel', $user->level);
                         Session::put('nickname', $user->nickname);
