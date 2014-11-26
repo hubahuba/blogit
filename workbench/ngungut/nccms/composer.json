@@ -1,0 +1,23 @@
+{
+    "name": "ngungut/nccms",
+    "description": "CMS Build for Narrada and Holcim Website.",
+    "authors": [
+        {
+            "name": "Utomo Triputranto",
+            "email": "uut3cobain@yahoo.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Ngungut\\Nccms\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}

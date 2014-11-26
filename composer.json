@@ -6,10 +6,7 @@
 	"require": {
 		"laravel/framework": "4.2.*",
         "orangehill/iseed": "dev-master",
-        "thujohn/twitter": "dev-master",
-        "facebook/php-sdk-v4" : "4.0.*",
-        "mews/useragent": "dev-master",
-        "intervention/image": "dev-master"
+        "mews/useragent": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

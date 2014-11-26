@@ -123,8 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Orangehill\Iseed\IseedServiceProvider',
         'Mews\Useragent\UseragentServiceProvider',
-        'Thujohn\Twitter\TwitterServiceProvider',
-        'Intervention\Image\ImageServiceProvider'
+        'Ngungut\Nccms\NccmsServiceProvider'
 
 	),
 
@@ -193,8 +192,6 @@ return array(
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
         'Useragent'         => 'Mews\Useragent\Facades\Useragent',
-        'Twitter'           => 'Thujohn\Twitter\TwitterFacade',
-        'Image'             => 'Intervention\Image\Facades\Image',
 
 	),
 
