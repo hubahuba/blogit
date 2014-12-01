@@ -57,6 +57,7 @@ Patchwork\Utf8\Bootup::initMbstring();
 */
 
 Illuminate\Support\ClassLoader::register();
+Illuminate\Support\ClassLoader::addDirectories(array(__DIR__.'/../app/plugins'));
 
 /*
 |--------------------------------------------------------------------------

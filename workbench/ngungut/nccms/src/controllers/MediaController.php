@@ -1,7 +1,6 @@
 <?php namespace Ngungut\Nccms\Controller;
 
 use BaseController;
-use Illuminate\Support\Facades\View;
 use Ngungut\Nccms\Model\Media;
 use Ngungut\Nccms\Libraries\UploadHandler;
 
@@ -25,7 +24,7 @@ class MediaController extends BaseController {
         $this->layout->title = $title . ' - NCCMS';
         $this->layout->with('script', 'nccms::admin.media.scripts.upload')
             ->with('style', 'nccms::admin.media.styles.upload');
-        $this->layout->content = View::make('nccms::admin.media.upload')
+        $this->layout->content = \View::make('nccms::admin.media.upload')
             ->with('title', $title);
 	}
 
@@ -44,7 +43,7 @@ class MediaController extends BaseController {
         $this->layout->title = $title . ' - NCCMS';
         $this->layout->with('script', 'nccms::admin.media.scripts.libraries')
             ->with('style', 'nccms::admin.media.styles.libraries');
-        $this->layout->content = View::make('nccms::admin.media.libraries')
+        $this->layout->content = \View::make('nccms::admin.media.libraries')
             ->with('libraries', Media::getAll())
             ->with('title', $title);
     }

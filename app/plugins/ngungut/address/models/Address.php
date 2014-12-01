@@ -1,4 +1,4 @@
-<?php namespace Ngungut\Nccms\Model;
+<?php namespace Ngungut\Address\Model;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 

@@ -7,33 +7,37 @@
 Route::group(array('domain' => 'admin.blog.it', 'before' => 'isAdmin'), function()
 {
     Route::get('tester', function(){
-        $children  = array();
+        /*$children  = array();
         foreach(get_declared_classes() as $class){
             if($class instanceof PluginBase) $children[] = $class;
+        }*/
+        $addr = \Ngungut\Nccms\PluginManager::instance();
+        foreach($addr->getPlugins() as $plugin){
+            Ngungut\Nccms\Libraries\Common::debug($plugin->registerNavigation());
         }
-        Ngungut\Nccms\Libraries\Common::debug(get_declared_classes(),1);
+        //Ngungut\Nccms\Libraries\Common::debug(get_declared_classes(),1);
     });
     /**
      * Route For Dashboard
      */
-    Route::get('/', ['uses' => 'Ngungut\Nccms\Controller\AdminController@dashboard']);
+    Route::get('/', ['uses' => 'AdminController@dashboard']);
 
     /**
      * Route For Login Page
      */
-    Route::get('login', ['uses' => 'Ngungut\Nccms\Controller\AdminController@login']);
+    Route::get('login', ['uses' => 'AdminController@login']);
     /**
      * Login action Handler
      */
     Route::post('login', [
         'before' => 'csrf',
-        'uses' => 'Ngungut\Nccms\Controller\AdminController@doLogin'
+        'uses' => 'AdminController@doLogin'
     ]);
 
     /**
      * Route For Logout
      */
-    Route::get('logout', ['uses' => 'Ngungut\Nccms\Controller\AdminController@logout']);
+    Route::get('logout', ['uses' => 'AdminController@logout']);
 
     /**
      * Route For Post
@@ -42,19 +46,19 @@ Route::group(array('domain' => 'admin.blog.it', 'before' => 'isAdmin'), function
         /**
          * Create new post
          */
-        Route::get('new', ['uses' => 'Ngungut\Nccms\Controller\PostController@action']);
+        Route::get('new', ['uses' => 'PostController@action']);
         /**
          * New Post Action Handler
          */
-        Route::post('new', ['before' => 'csrf', 'uses' => 'Ngungut\Nccms\Controller\PostController@doAction']);
+        Route::post('new', ['before' => 'csrf', 'uses' => '\PostController@doAction']);
         /**
          * Category Page Handler
          */
-        Route::get('categories', ['uses' => 'Ngungut\Nccms\Controller\CategoryController@index']);
+        Route::get('categories', ['uses' => 'CategoryController@index']);
         /**
          * New/Edit Category Post Action Handler
          */
-        Route::post('categories', ['before' => 'csrf', 'uses' => 'Ngungut\Nccms\Controller\CategoryController@doCategories']);
+        Route::post('categories', ['before' => 'csrf', 'uses' => 'CategoryController@doCategories']);
     });
 
     /**
@@ -64,15 +68,15 @@ Route::group(array('domain' => 'admin.blog.it', 'before' => 'isAdmin'), function
         /**
          * Libraries Page
          */
-        Route::get('libraries', ['uses' => 'Ngungut\Nccms\Controller\MediaController@libraries']);
+        Route::get('libraries', ['uses' => 'MediaController@libraries']);
         /**
          * Upload Page
          */
-        Route::get('upload', ['uses' => 'Ngungut\Nccms\Controller\MediaController@upload']);
+        Route::get('upload', ['uses' => 'MediaController@upload']);
         /**
          * Upload Media action Handler
          */
-        Route::post('upload', ['uses' => 'Ngungut\Nccms\Controller\MediaController@doUpload']);
+        Route::post('upload', ['uses' => 'MediaController@doUpload']);
 
         /**
          * CKEDITOR Prefix URL
@@ -81,19 +85,19 @@ Route::group(array('domain' => 'admin.blog.it', 'before' => 'isAdmin'), function
             /**
              * File Libraries Page
              */
-            Route::get('libraries', ['uses' => 'Ngungut\Nccms\Controller\CkeditorController@libraries']);
+            Route::get('libraries', ['uses' => 'CkeditorController@libraries']);
             /**
              * Image Libraries Page
              */
-            Route::get('image', ['uses' => 'Ngungut\Nccms\Controller\CkeditorController@image']);
+            Route::get('image', ['uses' => 'CkeditorController@image']);
             /**
              * Upload Page
              */
-            Route::get('upload', ['uses' => 'Ngungut\Nccms\Controller\CkeditorController@upload']);
+            Route::get('upload', ['uses' => 'CkeditorController@upload']);
             /**
              * Upload Media action Handler
              */
-            Route::post('upload', ['uses' => 'Ngungut\Nccms\Controller\CkeditorController@doUpload']);
+            Route::post('upload', ['uses' => 'CkeditorController@doUpload']);
         });
     });
 
@@ -104,15 +108,15 @@ Route::group(array('domain' => 'admin.blog.it', 'before' => 'isAdmin'), function
         /**
          * Setting Show Page
          */
-        Route::get('/', ['uses' => 'Ngungut\Nccms\Controller\SettingController@index']);
+        Route::get('/', ['uses' => 'SettingController@index']);
         /**
          * Setting General Action Handler
          */
-        Route::post('general', ['uses' => 'Ngungut\Nccms\Controller\SettingController@general']);
+        Route::post('general', ['uses' => 'SettingController@general']);
         /**
          * Setting Media Action handler
          */
-        Route::post('media', ['uses' => 'Ngungut\Nccms\Controller\SettingController@media']);
+        Route::post('media', ['uses' => 'SettingController@media']);
     });
 
     /**
@@ -122,21 +126,7 @@ Route::group(array('domain' => 'admin.blog.it', 'before' => 'isAdmin'), function
         /**
          * ajax for date/time format
          */
-        Route::post('dater', ['uses' => 'Ngungut\Nccms\Controller\SettingController@formater']);
-    });
-
-    /**
-     * Route For Address
-     */
-    Route::group(array('prefix' => 'address'), function() {
-        /**
-         * Address Show Page
-         */
-        Route::get('/', ['uses' => 'Ngungut\Nccms\Controller\AddressController@index']);
-        /**
-         * Address Action Handler
-         */
-        Route::post('/', ['uses' => 'Ngungut\Nccms\Controller\AddressController@doAddress']);
+        Route::post('dater', ['uses' => 'SettingController@formater']);
     });
 
 });

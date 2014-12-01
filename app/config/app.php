@@ -123,7 +123,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Orangehill\Iseed\IseedServiceProvider',
         'Mews\Useragent\UseragentServiceProvider',
-        'Ngungut\Nccms\NccmsServiceProvider'
+        'Ngungut\Nccms\NccmsServiceProvider',
+        'Ngungut\Nccms\PluginServiceProvider',
 
 	),
 

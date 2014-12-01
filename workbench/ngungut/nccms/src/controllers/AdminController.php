@@ -1,12 +1,6 @@
 <?php namespace Ngungut\Nccms\Controller;
 
 use BaseController;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Hash;
 use Ngungut\Nccms\Model\User as User;
 
 /**
@@ -29,7 +23,7 @@ class AdminController extends BaseController {
         $this->layout->title = 'Dashboard';
         $this->layout->with('script', 'nccms::admin.scripts.global')
             ->with('style', 'nccms::admin.styles.global');
-        $this->layout->content = View::make('nccms::admin.dashboard')
+        $this->layout->content = \View::make('nccms::admin.dashboard')
             ->with('title', 'Website');
 	}
 
@@ -38,7 +32,7 @@ class AdminController extends BaseController {
      * @return \Illuminate\View\View
      */
     public function login(){
-        return View::make('nccms::admin.login');
+        return \View::make('nccms::admin.login');
     }
 
     /**
@@ -56,29 +50,29 @@ class AdminController extends BaseController {
             'password' => 'Password'
         );
 
-        $validator = Validator::make(Input::all(), $rules, array(), $display);
+        $validator = \Validator::make(\Input::all(), $rules, array(), $display);
         if($validator->fails()) {
-            return Redirect::to('login')
+            return \Redirect::to('login')
                 ->withErrors($validator)
-                ->withInput(Input::all());
+                ->withInput(\Input::all());
         }else{
-            $user = User::where('username', '=', Input::get('userid'))
+            $user = User::where('username', '=', \Input::get('userid'))
                 ->first();
             if(isset($user->id)){
                 if($user->level < 3) {
-                    if (Hash::check(Input::get('password'), $user->password)) {
-                        Session::put('logedin', $user->id);
-                        Session::put('loginLevel', $user->level);
-                        Session::put('nickname', $user->nickname);
+                    if (\Hash::check(\Input::get('password'), $user->password)) {
+                        \Session::put('logedin', $user->id);
+                        \Session::put('loginLevel', $user->level);
+                        \Session::put('nickname', $user->nickname);
                     }
-                    return Redirect::to('/');
+                    return \Redirect::to('/');
                 }else{
-                    Session::flash('error', 'Permission Error.');
-                    return Redirect::to('login');
+                    \Session::flash('error', 'Permission Error.');
+                    return \Redirect::to('login');
                 }
             }else{
-                Session::flash('error', 'Email/Password Error.');
-                return Redirect::to('login');
+                \Session::flash('error', 'Email/Password Error.');
+                return \Redirect::to('login');
             }
         }
     }
@@ -88,10 +82,10 @@ class AdminController extends BaseController {
      * @return \Illuminate\Http\RedirectResponse
      */
     public function logout(){
-        Session::forget('logedin');
-        Session::forget('loginLevel');
-        Session::forget('nickname');
-        return Redirect::to('login');
+        \Session::forget('logedin');
+        \Session::forget('loginLevel');
+        \Session::forget('nickname');
+        return \Redirect::to('login');
     }
 
 }

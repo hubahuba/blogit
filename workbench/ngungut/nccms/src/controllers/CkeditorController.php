@@ -1,9 +1,6 @@
 <?php namespace Ngungut\Nccms\Controller;
 
 use BaseController;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Session;
 use Ngungut\Nccms\Model\Media;
 use Ngungut\Nccms\Libraries\UploadHandler;
 
@@ -27,7 +24,7 @@ class CkeditorController extends BaseController {
         $this->layout->title = $title . ' - NCCMS';
         $this->layout->with('script', 'nccms::admin.ckeditor.scripts.upload')
             ->with('style', 'nccms::admin.ckeditor.styles.upload');
-        $this->layout->content = View::make('nccms::admin.ckeditor.upload')
+        $this->layout->content = \View::make('nccms::admin.ckeditor.upload')
             ->with('title', $title);
 	}
 
@@ -46,18 +43,18 @@ class CkeditorController extends BaseController {
         $this->layout->title = $title . ' - NCCMS';
         $this->layout->with('script', 'nccms::admin.ckeditor.scripts.libraries')
             ->with('style', 'nccms::admin.ckeditor.styles.libraries');
-        $this->layout->content = View::make('nccms::admin.ckeditor.libraries')
+        $this->layout->content = \View::make('nccms::admin.ckeditor.libraries')
             ->with('libraries', Media::getMultimedia())
             ->with('title', $title);
     }
 
     public function image(){
-        if(Input::has('CKEditorFuncNum')) Session::put('FuncNum', Input::get('CKEditorFuncNum'));
+        if(\Input::has('CKEditorFuncNum')) \Session::put('FuncNum', \Input::get('CKEditorFuncNum'));
         $title = 'Image Media Libraries';
         $this->layout->title = $title . ' - NCCMS';
         $this->layout->with('script', 'nccms::admin.ckeditor.scripts.libraries')
             ->with('style', 'nccms::admin.ckeditor.styles.libraries');
-        $this->layout->content = View::make('nccms::admin.ckeditor.libraries')
+        $this->layout->content = \View::make('nccms::admin.ckeditor.libraries')
             ->with('libraries', Media::getImage())
             ->with('title', $title);
     }

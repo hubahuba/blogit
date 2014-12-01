@@ -185,7 +185,6 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="{{ URL::to('media/libraries') }}"><i class="fa fa-angle-double-right"></i> Libraries</a></li>
-                                <li><a href="{{ URL::to('media/slider') }}"><i class="fa fa-angle-double-right"></i> Image Slider</a></li>
                                 <li><a href="{{ URL::to('media/upload') }}"><i class="fa fa-angle-double-right"></i> Upload</a></li>
                             </ul>
                         </li>
@@ -200,15 +199,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{{ URL::to('mailbox') }}}">
-                                <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                                <small class="badge pull-right bg-yellow">12</small>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ URL::to('address') }}">
-                                <i class="fa fa-map-marker"></i>
-                                <span>Address</span>
+                            <a href="{{ URL::to('users') }}">
+                                <i class="fa fa-group"></i>
+                                <span>Users</span>
                             </a>
                         </li>
                         <li>

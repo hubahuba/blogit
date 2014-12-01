@@ -10,10 +10,8 @@
  * http://www.opensource.org/licenses/MIT
  */
 
-use Illuminate\Support\Facades\Config;
 use Ngungut\Nccms\Model\Settings;
 use Ngungut\Nccms\Model\Media;
-use Illuminate\Support\Facades\Session;
 
 class UploadHandler
 {
@@ -48,11 +46,11 @@ class UploadHandler
     function __construct($options = null, $initialize = true, $error_messages = null) {
         $this->options = array(
             'script_url' => $this->get_full_url().'/',
-            'upload_dir' => Config::get('nccms::config.upload_dir'),
-            'upload_url' => Config::get('nccms::config.upload_url'),
+            'upload_dir' => \Config::get('nccms::config.upload_dir'),
+            'upload_url' => \Config::get('nccms::config.upload_url'),
             'user_dirs' => false,
-            'mkdir_mode' => Config::get('nccms::config.mkdir_mode'),
-            'param_name' => Config::get('nccms::config.param_name'),
+            'mkdir_mode' => \Config::get('nccms::config.mkdir_mode'),
+            'param_name' => \Config::get('nccms::config.param_name'),
             // Set the following option to 'POST', if your server does not support
             // DELETE requests. This is a parameter sent to the client:
             'delete_type' => 'DELETE',
@@ -959,7 +957,7 @@ class UploadHandler
                         return $dimensions;
                     }
                     return false;
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     error_log($e->getMessage());
                 }
             }
@@ -1337,7 +1335,7 @@ class UploadHandler
                 'realname' => $file->name,
                 'type' => $file->type,
                 'description' => null,
-                'creator' => Session::get('logedin')
+                'creator' => \Session::get('logedin')
             ]);
         }
         return $this->generate_response(

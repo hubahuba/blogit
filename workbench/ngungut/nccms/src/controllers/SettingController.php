@@ -1,11 +1,6 @@
 <?php namespace Ngungut\Nccms\Controller;
 
 use BaseController;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Redirect;
 use Ngungut\Nccms\Model\Settings;
 
 /**
@@ -28,7 +23,7 @@ class SettingController extends BaseController {
         $this->layout->title = $title . ' - NCCMS';
         $this->layout->with('script', 'nccms::admin.setting.scripts.general')
             ->with('style', 'nccms::admin.setting.styles.general');
-        $this->layout->content = View::make('nccms::admin.setting.general')
+        $this->layout->content = \View::make('nccms::admin.setting.general')
             ->with('media', Settings::getMedia())
             ->with('site', Settings::getSite())
             ->with('title', $title);
@@ -39,11 +34,11 @@ class SettingController extends BaseController {
      * @return json
      */
     public function formater(){
-        $date = date(Input::get('format'));
+        $date = date(\Input::get('format'));
         if($date){
-            return Response::json(['success' => $date]);
+            return \Response::json(['success' => $date]);
         }else{
-            return Response::json(['failed' => true]);
+            return \Response::json(['failed' => true]);
         }
     }
 
@@ -69,74 +64,74 @@ class SettingController extends BaseController {
             'timeCustom' => 'Site Custom Time Format',
         );
 
-        $validator = Validator::make(Input::all(), $rules, array(), $display);
+        $validator = \Validator::make(\Input::all(), $rules, array(), $display);
         if($validator->fails()) {
-            return Redirect::to('setting')
+            return \Redirect::to('setting')
                 ->withErrors($validator)
-                ->withInput(Input::all());
+                ->withInput(\Input::all());
         }else{
             if(!$title = Settings::where('name', '=', 'siteTitle')->first()) {
                 Settings::create([
                     'name' => 'siteTitle',
-                    'value' => Input::get('siteTitle')
+                    'value' => \Input::get('siteTitle')
                 ]);
             }else{
-                $title->value = Input::get('siteTitle');
+                $title->value = \Input::get('siteTitle');
                 $title->save();
             }
 
             if(!$tagline = Settings::where('name', '=', 'siteTagline')->first()) {
                 Settings::create([
                     'name' => 'siteTagline',
-                    'value' => Input::get('siteTagline')
+                    'value' => \Input::get('siteTagline')
                 ]);
             }else{
-                $tagline->value = Input::get('siteTagline');
+                $tagline->value = \Input::get('siteTagline');
                 $tagline->save();
             }
 
             if(!$date = Settings::where('name', '=', 'siteDate')->first()) {
-                if(Input::get('dateFormat') != 'custom') {
+                if(\Input::get('dateFormat') != 'custom') {
                     Settings::create([
                         'name' => 'siteDate',
-                        'value' => Input::get('dateFormat')
+                        'value' => \Input::get('dateFormat')
                     ]);
                 }else{
                     Settings::create([
                         'name' => 'siteDate',
-                        'value' => Input::get('dateCustom')
+                        'value' => \Input::get('dateCustom')
                     ]);
                 }
             }else{
-                if(Input::get('dateFormat') != 'custom') {
-                    $date->value = Input::get('dateFormat');
+                if(\Input::get('dateFormat') != 'custom') {
+                    $date->value = \Input::get('dateFormat');
                 }else{
-                    $date->value = Input::get('dateCustom');
+                    $date->value = \Input::get('dateCustom');
                 }
                 $date->save();
             }
 
             if(!$date = Settings::where('name', '=', 'siteTime')->first()) {
-                if(Input::get('timeFormat') != 'custom') {
+                if(\Input::get('timeFormat') != 'custom') {
                     Settings::create([
                         'name' => 'siteTime',
-                        'value' => Input::get('timeFormat')
+                        'value' => \Input::get('timeFormat')
                     ]);
                 }else{
                     Settings::create([
                         'name' => 'siteTime',
-                        'value' => Input::get('timeCustom')
+                        'value' => \Input::get('timeCustom')
                     ]);
                 }
             }else{
-                if(Input::get('timeFormat') != 'custom') {
-                    $date->value = Input::get('timeFormat');
+                if(\Input::get('timeFormat') != 'custom') {
+                    $date->value = \Input::get('timeFormat');
                 }else{
-                    $date->value = Input::get('timeCustom');
+                    $date->value = \Input::get('timeCustom');
                 }
                 $date->save();
             }
-            return Redirect::to('setting');
+            return \Redirect::to('setting');
         }
     }
 
@@ -158,52 +153,52 @@ class SettingController extends BaseController {
             'mediumH' => 'Max Medium Size Image Height',
         );
 
-        $validator = Validator::make(Input::all(), $rules, array(), $display);
+        $validator = \Validator::make(\Input::all(), $rules, array(), $display);
         if($validator->fails()) {
-            return Redirect::to('setting')
+            return \Redirect::to('setting')
                 ->withErrors($validator)
-                ->withInput(Input::all());
+                ->withInput(\Input::all());
         }else{
             if(!$thumbW = Settings::where('name', '=', 'mediaThumbWidth')->first()) {
                 Settings::create([
                     'name' => 'mediaThumbWidth',
-                    'value' => Input::get('mediaThumbW')
+                    'value' => \Input::get('mediaThumbW')
                 ]);
             }else{
-                $thumbW->value = Input::get('mediaThumbW');
+                $thumbW->value = \Input::get('mediaThumbW');
                 $thumbW->save();
             }
 
             if(!$thumbH = Settings::where('name', '=', 'mediaThumbHeight')->first()) {
                 Settings::create([
                     'name' => 'mediaThumbHeight',
-                    'value' => Input::get('mediaThumbH')
+                    'value' => \Input::get('mediaThumbH')
                 ]);
             }else{
-                $thumbH->value = Input::get('mediaThumbH');
+                $thumbH->value = \Input::get('mediaThumbH');
                 $thumbH->save();
             }
 
             if(!$mediumW = Settings::where('name', '=', 'mediaMediumWidth')->first()) {
                 Settings::create([
                     'name' => 'mediaMediumWidth',
-                    'value' => Input::get('mediumW')
+                    'value' => \Input::get('mediumW')
                 ]);
             }else{
-                $mediumW->value = Input::get('mediumW');
+                $mediumW->value = \Input::get('mediumW');
                 $mediumW->save();
             }
 
             if(!$mediumH = Settings::where('name', '=', 'mediaMediumHeight')->first()) {
                 Settings::create([
                     'name' => 'mediaMediumHeight',
-                    'value' => Input::get('mediumH')
+                    'value' => \Input::get('mediumH')
                 ]);
             }else{
-                $mediumH->value = Input::get('mediumH');
+                $mediumH->value = \Input::get('mediumH');
                 $mediumH->save();
             }
-            return Redirect::to('setting');
+            return \Redirect::to('setting');
         }
     }
 
